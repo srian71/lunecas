@@ -35,6 +35,8 @@
         </nav>
     </header>
 
+    <div id="banner-aniversario" style="display:none; cursor:pointer;" onclick="verificarAcesso()"></div>
+
     <main class="container">
         <h1>Bem-vindo ao Reino Lunecas</h1>
         <p>Uma visão de governo fundamentada na elegância, na transparência absoluta e, claro, em muitas bonecas.</p>
@@ -50,5 +52,52 @@
         <p>&copy; 2026 LunecasBonecas. Todos os direitos reservados.</p>
     </footer>
 </body>
+
+<script>
+    window.onload = function () {
+        const hoje = new Date();
+        if (hoje.getDate() === 15 && hoje.getMonth() === 6) {
+            window.location.href = "aniversario.html";
+        }
+    }
+</script>
+
+<script>
+    function verificarAcesso() {
+        const hoje = new Date();
+        // Se for dia 15, permite entrar. Se não, avisa.
+        if (hoje.getDate() === 15 && hoje.getMonth() === 6) {
+            window.location.href = 'aniversario.html';
+        } else {
+            alert("O acesso ao Palácio Real está restrito ao dia 15 de julho.");
+        }
+    }
+
+    window.onload = function () {
+        const hoje = new Date();
+        const banner = document.getElementById('banner-aniversario');
+        const dia = hoje.getDate();
+        const mes = hoje.getMonth(); // Julho é 6
+
+        if (mes === 6 && dia === 14) {
+            banner.style.display = "block";
+            banner.style.background = "var(--rosa-destaque)";
+            banner.style.color = "white";
+            banner.style.padding = "10px";
+            banner.textContent = `✨ Falta 1 dia para o Aniversário da Governadora!`;
+        } else if (mes === 6 && dia >= 10 && dia < 15) {
+            const diasRestantes = 15 - dia;
+            banner.style.display = "block";
+            banner.style.background = "var(--rosa-destaque)";
+            banner.style.color = "white";
+            banner.style.padding = "10px";
+            banner.textContent = `✨ Faltam ${diasRestantes} dias para o Aniversário da Governadora!`;
+        } else if (mes === 6 && dia === 15) {
+            banner.style.display = "block";
+            banner.style.background = "var(--rosa-mais-destaque)";
+            banner.textContent = "👑 Hoje é o Aniversário da Governadora! Clique para ler uma carta!";
+        }
+    };
+</script>
 
 </html>
