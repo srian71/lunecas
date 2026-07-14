@@ -81,20 +81,15 @@
 
         if (mes === 6 && dia === 14) {
             banner.style.display = "block";
-            banner.style.background = "var(--rosa-destaque)";
-            banner.style.color = "white";
             banner.style.padding = "10px";
             banner.textContent = `✨ Falta 1 dia para o Aniversário da Governadora!`;
         } else if (mes === 6 && dia >= 10 && dia < 15) {
             const diasRestantes = 15 - dia;
             banner.style.display = "block";
-            banner.style.background = "var(--rosa-destaque)";
-            banner.style.color = "white";
             banner.style.padding = "10px";
             banner.textContent = `✨ Faltam ${diasRestantes} dias para o Aniversário da Governadora!`;
         } else if (mes === 6 && dia === 15) {
             banner.style.display = "block";
-            banner.style.background = "var(--rosa-mais-destaque)";
             banner.textContent = "👑 Hoje é o Aniversário da Governadora! Clique para ler uma carta!";
         }
     };
