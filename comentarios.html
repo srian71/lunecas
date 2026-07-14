@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>LunecasBonecas</title>
+    <link rel="shortcut icon" href="logo.png">
+</head>
+
+<body>
+    <header>
+        <!-- Ícone SVG de Coroa Minimalista -->
+        <h1 style="display: flex; align-items: center; justify-content: center;">Lunecas
+            <svg class="icon" width="48" height="48" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="50,10 61,40 92,40 67,60 76,90 50,70 24,90 33,60 8,40 39,40">
+            </svg>
+            Bonecas
+        </h1>
+        <nav style="display: flex;gap: 15px; margin-top: 10px; flex-direction: column; justify-content: center;">
+            <div>
+                <a href="index.html">Home</a>
+                <a href="peticao.html">Petição</a>
+                <a href="decretos.html">Decretos</a>
+                <a class="active" href="comentarios.html">Comentários</a>
+                <a href="galeria.html">Fotos</a>
+                <a href="sobre.html">Sobre</a>
+            </div>
+            <a href="https://www.instagram.com/cursedcashi/" target="_blank">
+                <img src="https://static.cdninstagram.com/rsrc.php/yr/r/rzWiSjZRxk5.webp" alt="Instagram"
+                    style="width: 15px; height: auto; margin-left: 10px;">
+            </a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Mural de Apoio</h1>
+        <div id="mural">
+            <div style="border-bottom: 1px solid #eee; padding: 20px 0;">
+                <p>"Quero que ela se ocupe de suas responsabilidades."</p>
+                <small>— Zeca A.</small>
+            </div>
+
+            <div style="border-bottom: 1px solid #eee; padding: 20px 0;">
+                <p>"Totalmente apoiado. Viva a nova era, LunecasBonecas!"</p>
+                <small>— R. Santos</small>
+
+            </div>
+        </div>
+
+        <div style="padding: 20px 0;">
+            <textarea id="novoComentario" style="width: 97.25%; height:80px; padding:10px; border: 1px dashed #ccc;"
+                placeholder="Deixe seu comentário..."></textarea>
+            <input type="text" id="nomeUsuario"
+                style="width: 97.25%; margin-top: 10px; padding:10px; border: 1px dashed #ccc;"
+                placeholder="Seu nome (opcional)">
+            <button style="margin-top:10px;" onclick="publicarComentario()">Publicar</button>
+        </div>
+    </main>
+
+    <script>
+        // Carrega comentários salvos ao abrir a página
+        window.onload = function () {
+            const comentariosSalvos = JSON.parse(localStorage.getItem('muralLunecas')) || [];
+            comentariosSalvos.forEach(item => exibirComentario(item.texto, item.nome));
+        };
+
+        function publicarComentario() {
+            const btn = document.querySelector('button');
+            const textoOriginal = btn.textContent;
+
+            const inputTexto = document.getElementById('novoComentario');
+            const inputNome = document.getElementById('nomeUsuario');
+
+            const texto = inputTexto.value;
+            const nome = inputNome.value.trim() === "" ? "Cidadão Apoiador" : inputNome.value;
+
+            if (texto.trim() === "") return;
+
+            // Salva objeto no localStorage
+            const novoItem = { texto: texto, nome: nome };
+            const comentarios = JSON.parse(localStorage.getItem('muralLunecas')) || [];
+            comentarios.push(novoItem);
+            localStorage.setItem('muralLunecas', JSON.stringify(comentarios));
+
+            // Exibe e limpa campos
+            exibirComentario(texto, nome);
+            inputTexto.value = "";
+            inputNome.value = "";
+
+            btn.textContent = "Publicando...";
+            btn.style.backgroundColor = "#ccc";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.textContent = textoOriginal;
+                btn.style.backgroundColor = "";
+                btn.disabled = false;
+            }, 800);
+        }
+
+        function exibirComentario(texto, nome) {
+            const mural = document.getElementById('mural');
+            const div = document.createElement('div');
+            div.style.borderBottom = "1px solid #eee";
+            div.style.padding = "20px 0";
+            div.innerHTML = `<p>"${texto}"</p><small>— ${nome}</small>`;
+            mural.prepend(div);
+        }
+    </script>
+
+    <footer style="text-align: center">
+        <p>&copy; 2026 LunecasBonecas. Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>
