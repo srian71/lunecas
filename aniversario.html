@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Feliz Aniversário, Governadora!</title>
+    <link rel="shortcut icon" href="logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            background: #fff0f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Georgia', serif;
+        }
+
+        .envelope {
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-size: 100px;
+        }
+
+        .envelope:hover {
+            transform: translateY(-10px);
+        }
+
+        .carta {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="envelope" class="envelope" onclick="abrirCarta()">✉️</div>
+
+    <div id="carta" class="carta">
+        <h1 style="color: #c56e6e;">👑 <br> Para a Governadora Lunecas</h1>
+        <p style="color: #5c4b51; line-height: 1.6; text-align: left; font-size: 0.95em;">
+            "Oh grande Imperatriz,<br>
+
+            Hoje o mundo inteiro se curva para celebrar o seu dia, mas eu... bem, eu tenho o privilégio de conhecer a
+            dona desse sorriso fora do protocolo. Enquanto todos admiram a firmeza das suas decisões e a elegância do
+            seu governo, eu fico aqui, observando o brilho que você espalha só por ser quem é.<br>
+
+            Que hoje o dia seja apenas sobre você. Sobre o seu brilho, a sua risada que faz qualquer cidadão rir e a
+            sua existência, que é o meu maior decreto de felicidade. Parabéns por ser essa mulher incrível que faz o meu
+            mundo ter mais graça."</p>
+        <p><strong style="color: #c56e6e;">— Com carinho, seu Programador do Reino.</strong></p>
+    </div>
+
+    <script>
+        function abrirCarta() {
+            document.getElementById('envelope').style.display = 'none';
+            document.getElementById('carta').style.display = 'block';
+
+            // Efeito de confete e estrelas
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                shapes: ['star', 'circle'],
+                colors: ['#d4a5a5', '#c56e6e', '#fff0f5']
+            });
+        }
+    </script>
+    <script>
+        const hoje = new Date();
+        if (!(hoje.getDate() === 15 && hoje.getMonth() === 6)) {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>

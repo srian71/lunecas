@@ -40,7 +40,7 @@ nav a:hover {
     color: var(--rosa-mais-destaque);
 }
 
-#mural{
+#mural {
     display: flex;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -105,4 +105,19 @@ button:hover {
 
 .foto-item:hover {
     transform: scale(1.02);
+}
+
+#banner-aniversario {
+    background: var(--rosa-destaque);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+    display: none;
+    cursor: pointer;
+}
+
+#banner-aniversario:hover {
+    background: var(--rosa-mais-destaque);
 }
